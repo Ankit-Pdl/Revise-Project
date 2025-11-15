@@ -1,0 +1,66 @@
+/* Simple reset + general styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #071028 0%, #041022 100%);
+  color: #e6eef8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  margin: 0 0 0.5rem 0;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+/* Links & buttons */
+a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+/* Form elements */
+button, input, textarea, select {
+  font: inherit;
+}
+
+/* Helpful utilities */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Focus styles for accessibility */
+:focus {
+  outline: 3px solid rgba(99,102,241,0.18);
+  outline-offset: 2px;
+}
