@@ -64,3 +64,39 @@ button, input, textarea, select {
   outline: 3px solid rgba(99,102,241,0.18);
   outline-offset: 2px;
 }
+
+
+/* ...existing code... */
+
+/* ensure full-height layout so footer can stick */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+/* app root: column flex layout */
+.app-root {
+  min-height: 100vh;            /* full viewport height */
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);        /* use your theme vars */
+  color: var(--text);
+  transition: background var(--ts), color var(--ts);
+}
+
+/* main content area grows to push footer down */
+.app-content {
+  flex: 1 1 auto;
+  display: block;
+  padding: 24px;                /* adjust spacing */
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ensure Footer sits at the bottom when inside the wrapper */
+.site-footer {
+  margin-top: auto;             /* pushes footer to bottom in .app-root */
+  width: 100%;
+}

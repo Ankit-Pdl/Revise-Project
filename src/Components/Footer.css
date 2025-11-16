@@ -1,0 +1,102 @@
+/* Footer that follows the project's soft theme variables */
+
+.site-footer {
+  background: var(--nav-bg);
+  color: var(--text);
+  border-top: 1px solid var(--accent-soft);
+  transition: background var(--ts), color var(--ts), border-color var(--ts);
+  padding: 18px 12px 10px;
+  font-size: 0.95rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+
+.footer-nav {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.footer-nav a {
+  color: var(--text);
+  text-decoration: none;
+  opacity: 0.9;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background var(--ts), color var(--ts), transform var(--ts);
+}
+
+.footer-nav a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.footer-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  text-decoration: none;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background var(--ts), color var(--ts);
+}
+
+.social:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 8px auto 0;
+  padding: 0 12px;
+  color: var(--text);
+  opacity: 0.8;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+/* small accessibility helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .footer-inner { flex-direction: column; align-items: stretch; gap: 10px; }
+  .footer-nav { justify-content: center; }
+  .footer-actions { justify-content: center; }
+}
