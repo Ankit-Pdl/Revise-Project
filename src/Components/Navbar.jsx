@@ -1,10 +1,28 @@
 // ...existing code...
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen((v) => !v);
+
+  // Theme state persisted to localStorage and applied to the root element
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem("theme") || "light";
+    } catch {
+      return "light";
+    }
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {}
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === "light" ? "dark" : "light"));
 
   return (
     <>
@@ -20,6 +38,18 @@ const Navbar = () => {
             <span />
             <span />
             <span />
+          </button>
+
+          {/* Theme toggle - toggles whole page */}
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${
+              theme === "light" ? "dark" : "light"
+            } mode`}
+            title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+          >
+            {theme === "light" ? "🌙" : "☀️"}
           </button>
 
           <ul className="nav-list">

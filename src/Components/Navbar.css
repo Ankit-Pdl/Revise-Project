@@ -1,16 +1,56 @@
-/* ...existing code... */
+/* =========================================
+   NEW SMOOTH & SOFT THEME VARIABLES
+   ========================================= */
 
-/* Navbar layout */
+/* Light Mode — Soft, not bright */
+:root {
+  --bg: #E8ECF1;
+  --text: #1A1D21;
+  --nav-bg: #F0F2F5;
+  --sidebar-bg: #F3F4F6;
+  --overlay: rgba(0,0,0,0.20);
+
+  --accent: #4F46E5;
+  --accent-soft: rgba(79,70,229,0.12);
+
+  /* Smooth transitions */
+  --ts: 0.35s cubic-bezier(.25,.8,.25,1);
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --bg: #0C0F14;
+  --text: #E6EEF8;
+  --nav-bg: #0F172A;
+  --sidebar-bg: #0F172A;
+  --overlay: rgba(0,0,0,0.60);
+
+  --accent: #6366F1;
+  --accent-soft: rgba(99,102,241,0.14);
+}
+
+/* ---- BASE ---- */
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--ts), color var(--ts);
+  font-family: system-ui, sans-serif;
+}
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
 .Navbar-Container {
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: linear-gradient(90deg, #0f172a 0%, #0b1220 100%);
-  color: #e6eef8;
-  box-shadow: 0 2px 8px rgba(2,6,23,0.5);
-  border-bottom: 1px solid rgba(255,255,255,0.03);
+  background: var(--nav-bg);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.20);
   backdrop-filter: blur(6px);
+  transition: background var(--ts), color var(--ts);
 }
 
 .nav-inner {
@@ -22,7 +62,7 @@
   justify-content: space-between;
 }
 
-/* hamburger (triple line) */
+/* HAMBURGER */
 .hamburger {
   width: 40px;
   height: 36px;
@@ -35,122 +75,126 @@
   padding: 6px;
   cursor: pointer;
   border-radius: 8px;
-  transition: background 150ms ease;
+  transition: background var(--ts);
 }
-.hamburger:hover { background: rgba(255,255,255,0.03); }
+
+.hamburger:hover { 
+  background: var(--accent-soft);
+}
 
 .hamburger span {
-  display: block;
   height: 3px;
-  background: #e6eef8;
+  background: var(--text);
   border-radius: 2px;
-  transition: transform 200ms ease, opacity 200ms ease;
+  transition: transform var(--ts), opacity var(--ts), background var(--ts);
 }
 
-/* animate to X when open */
+/* X animation */
 .hamburger.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-.hamburger.is-open span:nth-child(2) {
-  opacity: 0;
-}
+.hamburger.is-open span:nth-child(2) { opacity: 0; }
 .hamburger.is-open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* nav list visible on wider screens */
+/* NAV LIST */
 .nav-list {
   display: flex;
   gap: 18px;
-  align-items: center;
   list-style: none;
-  margin: 0;
-  padding: 8px 0;
 }
+
 .nav-list li {
   font-size: 0.95rem;
   font-weight: 500;
   padding: 8px 12px;
-  color: rgba(230,238,248,0.95);
+  color: var(--text);
+  opacity: 0.85;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 170ms ease, transform 150ms ease, color 150ms ease;
+  transition: background var(--ts), color var(--ts), transform var(--ts);
 }
-.nav-list li:hover { background: rgba(255,255,255,0.04); color: #fff; transform: translateY(-2px); }
 
-/* Sidebar */
+.nav-list li:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* SIDEBAR */
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
   width: 280px;
-  max-width: 85%;
   transform: translateX(-110%);
-  transition: transform 260ms cubic-bezier(.22,.9,.12,1);
-  background: linear-gradient(180deg, #071028 0%, #041022 100%);
-  color: #e6eef8;
+  background: var(--sidebar-bg);
+  color: var(--text);
   z-index: 1100;
-  box-shadow: 4px 0 24px rgba(2,6,23,0.6);
+  box-shadow: 4px 0 24px rgba(0,0,0,0.35);
+  transition: transform var(--ts), background var(--ts), color var(--ts);
   overflow-y: auto;
-  will-change: transform;
 }
+
 .sidebar.open { transform: translateX(0); }
 
-.sidebar-inner {
-  padding: 20px;
-}
+.sidebar-inner { padding: 20px; }
+
 .sidebar-close {
   background: transparent;
   border: none;
-  color: #dbeafe;
+  color: var(--text);
   font-size: 28px;
-  line-height: 1;
   cursor: pointer;
-  float: right;
 }
 
-/* Sidebar nav */
+/* Sidebar Links */
 .sidebar nav ul {
-  list-style: none;
-  padding: 24px 0 0 0;
-  margin: 0;
+  padding: 24px 0 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+
 .sidebar nav li {
   padding: 10px 12px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 420ms ease-in-out;
+  transition: background var(--ts), color var(--ts);
 }
-.sidebar nav li:hover { background: rgba(255,255,255,0.03); }
 
-/* overlay */
+.sidebar nav li:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* OVERLAY */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: var(--overlay);
   z-index: 1050;
+  transition: background var(--ts);
 }
 
-/* Responsive: hide nav-list on small screens and show hamburger */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .nav-list {
-    display: none;
-  }
-  .hamburger {
-    display: inline-flex;
-  }
+  .nav-list { display: none; }
 }
 
-/* Desktop: keep hamburger visible optionally */
-@media (min-width: 769px) {
-  .hamburger {
-    display: inline-flex;
-    margin-right: 12px;
-  }
+/* THEME BUTTON */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+  transition: color var(--ts);
 }
-
-/* ...existing code... */
+.theme-toggle:hover {
+  color: var(--accent);
+}
