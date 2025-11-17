@@ -1,4 +1,4 @@
-// ...existing code...
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 
@@ -41,6 +41,9 @@ const Navbar = () => {
           </button>
 
           {/* Theme toggle - toggles whole page */}
+          <h3 className="logo">
+            <Link to="/">APY NOVA</Link>
+          </h3>
           <button
             className="theme-toggle"
             onClick={toggleTheme}
@@ -53,11 +56,10 @@ const Navbar = () => {
           </button>
 
           <ul className="nav-list">
-            <li>About</li>
-            <li>Products</li>
-            <li>Services</li>
-            <li>Contact</li>
-            <li>Blog</li>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/products">Products</Link>
           </ul>
         </div>
       </div>
@@ -79,11 +81,18 @@ const Navbar = () => {
           </button>
           <nav>
             <ul>
-              <li onClick={toggle}>About</li>
-              <li onClick={toggle}>Products</li>
-              <li onClick={toggle}>Services</li>
-              <li onClick={toggle}>Contact</li>
-              <li onClick={toggle}>Blog</li>
+              <Link onClick={toggle} to="/">
+                Home
+              </Link>
+              <Link onClick={toggle} to="/about">
+                About
+              </Link>
+              <Link onClick={toggle} to="/contact">
+                Contact
+              </Link>
+              <Link onClick={toggle} to="/products">
+                Products
+              </Link>
             </ul>
           </nav>
         </div>
